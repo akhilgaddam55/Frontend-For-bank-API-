@@ -38,7 +38,103 @@ export default function Home() {
     }).format(amount);
 
   if (!data) {
-    return <p className="text-center mt-20">Loading...</p>;
+    return (
+      <div>
+         <div className="px-4 pt-4">
+      <p className="text-right mb-4">
+        Welcome{" "}
+        <span className="font-semibold">
+          {sessionStorage.getItem("email") || ""}
+        </span>
+      </p>
+
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-6 mb-6">
+        <Card
+          icon={<FaHome size={28} className="text-blue-500" />}
+          title="Total Accounts"
+          value={ 0}
+        />
+        <Card
+          icon={<FaWallet size={28} className="text-green-500" />}
+          title="Total Balance"
+          value={0}
+        />
+        <Card
+          icon={<FaPiggyBank size={28} className="text-purple-500" />}
+          title="Savings Balance"
+          value={0}
+        />
+        <Card
+          icon={<FaMoneyBillWave size={28} className="text-yellow-500" />}
+          title="Current Balance"
+          value={0}
+        />
+      </div>
+      <hr className="mt-2"></hr>
+
+      <div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-6 mb-6 mt-2">
+        <Card
+          icon={<FaArrowDown size={28} className="text-blue-600" />}
+          title="Total Deposits"
+          value={0}
+        />
+        <Card
+          icon={<FaArrowUp size={28} className="text-red-500" />}
+          title="Total Withdrawals"
+          value={0}
+        />
+        <Card
+          icon={<FaExchangeAlt size={28} className="text-indigo-500" />}
+          title="Total Transfers"
+          value={0}
+        />
+      </div>
+
+      <div className="grid lg:grid-cols-2 gap-6 mt-6">
+        <div className="border shadow-lg rounded-lg p-6 bg-white">
+          <h2 className="text-xl font-semibold mb-4">Transaction Breakdown</h2>
+          <PieChart
+            data={[
+              {
+                name: "Deposits",
+                value: 0,
+              },
+              {
+                name: "Withdrawals",
+                value: 0,
+              },
+              {
+                name: "Transfers",
+                value:  0,
+              },
+            ]}
+          />
+        </div>
+
+        <div className="border shadow-lg rounded-lg p-6 bg-white">
+          <h2 className="text-xl font-semibold mb-4">Transaction Totals</h2>
+          <BarChart
+            data={[
+              {
+                name: "Deposits",
+                amount: 0,
+              },
+              {
+                name: "Withdrawals",
+                amount:  0,
+              },
+              {
+                name: "Transfers",
+                amount:  0,
+              },
+            ]}
+          />
+        </div>
+      </div>
+    </div>
+
+      </div>
+    );
   }
 
   const { totalAccounts, totalBalance, balanceByType, transactionSummary } =

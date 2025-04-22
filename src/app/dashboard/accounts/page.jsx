@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { fetchBuildingsData, fetchuserAccounts } from "../../../utils/fetchers";
 import { Button } from "@/components/ui/button";
-import { MdVisibility } from "react-icons/md";
+import { MdVisibility, MdAdd } from "react-icons/md";
 import { useRouter } from "next/navigation";
 
 const ExampleTable = () => {
@@ -29,6 +29,10 @@ const ExampleTable = () => {
     router.push(`/dashboard/accounts/account/${accountId}`);
   };
 
+  const handleCreateAccount = () => {
+    router.push("/dashboard/accounts/create");
+  };
+
   const columns = [
     { accessorKey: "accountType", header: "Account Type" },
     { accessorKey: "balance", header: "Balance" },
@@ -50,6 +54,13 @@ const ExampleTable = () => {
 
   return (
     <div className="p-6">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-semibold">Accounts</h2>
+        <Button onClick={handleCreateAccount} className="gap-2">
+          <MdAdd />
+          Create Account
+        </Button>
+      </div>
       <MaterialReactTable
         columns={columns}
         data={data}
