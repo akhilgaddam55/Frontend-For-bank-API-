@@ -17,7 +17,7 @@ jobs:
       - name: Starting deployment
         run: echo "Deploying to Railway..."
 
-      - name: Loading project
+      - name: ⏳ Loading project
         run: |
           echo "Loading..."
           sleep 30
