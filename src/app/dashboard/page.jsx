@@ -19,14 +19,16 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userId = sessionStorage.getItem("userId");
-        const dashboardData = await fetchDashboardData(userId);
-        setData(dashboardData);
+        if (typeof window !== "undefined") {
+          const userId = sessionStorage.getItem("userId");
+          const dashboardData = await fetchDashboardData(userId);
+          setData(dashboardData);
+        }
       } catch (error) {
         console.error("Error fetching Accounts:", error.message);
       }
     };
-
+  
     fetchData();
   }, []);
 
@@ -44,7 +46,7 @@ export default function Home() {
       <p className="text-right mb-4">
         Welcome{" "}
         <span className="font-semibold">
-          {sessionStorage.getItem("email") || ""}
+        {typeof window !== "undefined" ? sessionStorage.getItem("email") || "" : ""}
         </span>
       </p>
 
@@ -145,7 +147,7 @@ export default function Home() {
       <p className="text-right mb-4">
         Welcome{" "}
         <span className="font-semibold">
-          {sessionStorage.getItem("email") || ""}
+        {typeof window !== "undefined" ? sessionStorage.getItem("email") || "" : ""}
         </span>
       </p>
 
